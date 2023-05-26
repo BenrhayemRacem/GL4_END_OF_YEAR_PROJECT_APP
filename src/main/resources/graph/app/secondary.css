@@ -1,0 +1,4 @@
+.preLabel {
+    -fx-text-fill : rgb(8, 8, 121) ;
+    -fx-font-weight: bold;
+}

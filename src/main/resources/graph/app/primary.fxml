@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Button?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ComboBox?>
+
+<VBox alignment="CENTER" spacing="20.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="graph.app.PrimaryController">
+   <children>
+      <Label fx:id="fileSelectionLabel" text="no Graph File selected" />
+      <Button fx:id="chooseFileButton" text="choose Graph File" onAction="#handleFileChooseAction"/>
+      <HBox>
+      <children>
+      <Label>
+    <text>Graph nodes (vertices )</text>
+      </Label>
+      <TextField id="nodesTextField" fx:id="nodesTextField"  />
+      </children>
+      </HBox>
+
+       <HBox>
+      <children>
+      <Label>
+    <text>Graph edges </text>
+      </Label>
+      <TextField id="edgesTextField" fx:id="edgesTextField"  />
+      </children>
+      </HBox>
+      <HBox>
+      <children>
+       <Label>
+    <text>Choose algorithm </text>
+      </Label>
+      <ComboBox fx:id="algorithComboBox" />
+      </children>
+      </HBox>
+       <HBox>
+      <children>
+       <Label fx:id="iterationLabel" text="number of iterations"/>
+      <TextField id="iterationTextField" fx:id="iterationTextField"  />
+      </children>
+      </HBox>
+      <Button fx:id="submitButton" text="submit" onAction="#handleSubmit"/>
+   </children>
+  
+   
+</VBox>
