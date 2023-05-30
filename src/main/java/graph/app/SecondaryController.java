@@ -63,6 +63,11 @@ public class SecondaryController implements Initializable {
                     commandText.setText("The docker daemon is not running. Please start it and retry");
                     break;
                 }
+                if(line.startsWith("triangle count")){
+                    commandText.setText(line);
+                    break;
+                }
+
                 commandText.setText(commandText.getText()+"\n "+line);
             }
             System.out.println(commandText.getText());
