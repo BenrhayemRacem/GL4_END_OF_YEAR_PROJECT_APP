@@ -15,7 +15,7 @@ public class DeploySolution {
     public DeploySolution(ModelResponse modelResponse) {
         this.fm = modelResponse.getFormModel() ;
         this.framework = modelResponse.getFramework() ;
-        this.processBuilder.inheritIO();
+        //this.processBuilder.inheritIO();
         this.processBuilder.redirectErrorStream(true);
         System.out.println(fm);
         List<String> list = new ArrayList<>();

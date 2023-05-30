@@ -52,28 +52,32 @@ public class SecondaryController implements Initializable {
     private void handleDeploySolution(ActionEvent event) {
         try {
             Process process = deploySolution.getProcessBuilder().start();
-               BufferedReader reader = new BufferedReader(
-				new InputStreamReader(process.getInputStream()));
-
-		String line;
-		while ((line = reader.readLine()) != null) {
-			String existingText =commandText.getText();
-            commandText.setText(existingText +"\n"+line);
-            System.out.println(line);
-            
-		}
-        // TODO : this returns the success for the last executed command
-		int exitVal = process.waitFor();
-		if (exitVal == 0) {
-			System.out.println("Success!");
-			//System.out.println(output);
-			//System.exit(0);
-		} else {
-			//abnormal...
-		}
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+            BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+            String line;
+            while ((line = reader.readLine()) != null) {
+                if(line.startsWith("Bad input")){
+                    commandText.setText("You did not provide me with a valid input file would you like me to convert it for you ?");
+                    break ;
+                }
+                if(line.startsWith("docker: Cannot connect to the Docker daemon at unix")){
+                    commandText.setText("The docker daemon is not running. Please start it and retry");
+                    break;
+                }
+                commandText.setText(commandText.getText()+"\n "+line);
+            }
+            System.out.println(commandText.getText());
+            // TODO : this returns the success for the last executed command
+            int exitVal = process.waitFor();
+            if (exitVal == 0) {
+                System.out.println("Success!");
+                //System.out.println(output);
+                //System.exit(0);
+            } else {
+                //abnormal...
+            }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
     }
     
 
