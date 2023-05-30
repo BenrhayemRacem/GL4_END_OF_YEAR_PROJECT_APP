@@ -72,6 +72,25 @@ public class FormModel {
         return algorithm;
     }
 
+    // TODO : probably move it to Lookup class
+    public int getAlgorithmCode(AlgorithmEnum algorithm) {
+        switch (algorithm) {
+            case BFS:
+                return 0 ;
+            case PAGE_RANK:
+                return 1 ;
+            case CONNECTED_COMPONENTS:
+                return 2 ;
+            case TRIANGLE_COUNTING:
+                return 3 ;
+            default:
+                System.err.println("Invalid Input");
+                System.exit(1);
+                break ;
+        }
+        return -1 ;
+    }
+
     public void setAlgorithm(AlgorithmEnum algorithm) {
         this.algorithm = algorithm;
     }

@@ -55,7 +55,7 @@ public class PrimaryController implements Initializable {
                 long bytes = Files.size(path);
                 formModel.setFileSize(bytes/1000000);
 
-                fileSelectionLabel.setText(file.getAbsolutePath() + " choosen");
+                fileSelectionLabel.setText(file.getAbsolutePath());
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -65,6 +65,7 @@ public class PrimaryController implements Initializable {
     @FXML
     private void handleSubmit(ActionEvent event) {
         try {
+            // TODO : computer config
             formModel.setNodes(Long.parseLong(nodesTextField.getText()));
             formModel.setEdges(Long.parseLong(edgesTextField.getText()));
             formModel.setAlgorithm(algorithComboBox.getValue());
@@ -77,7 +78,9 @@ public class PrimaryController implements Initializable {
             ModelResponse modelResponse = ModelResponse.getInstance();
             FormModel newFormModel = new FormModel(formModel.getFileName(), formModel.getVolumePath(),
                     formModel.getNodes(), formModel.getEdges(), formModel.getAlgorithm(), formModel.getIterations() ,formModel.getFileSize());
-            modelResponse.setFramework("MMAP");
+            // TODO : send HTTP request to our server
+            // TODO : unify this in Lookup
+            modelResponse.setFramework("LIGRA");
             modelResponse.setFormModel(newFormModel);
             App.setRoot("secondary");
         } catch (Exception e) {

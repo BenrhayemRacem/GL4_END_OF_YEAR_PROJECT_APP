@@ -1,25 +1,22 @@
 package graph.app;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.io.PrintStream;
-import java.net.URL;
-import java.util.ResourceBundle;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
 import javafx.scene.text.Text;
 import models.ModelResponse;
 import services.DeploySolution;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.net.URL;
+import java.util.ResourceBundle;
+
 public class SecondaryController implements Initializable {
-    private DeploySolution deploySolution = new DeploySolution() ;
-    private String preLabelCssClass = "preLabel";
+    ModelResponse modelResponse=  ModelResponse.getInstance();
+    private final DeploySolution deploySolution = new DeploySolution(modelResponse) ;
     @FXML
     private Text commandText ;
     @FXML
@@ -65,7 +62,7 @@ public class SecondaryController implements Initializable {
             System.out.println(line);
             
 		}
-
+        // TODO : this returns the success for the last executed command
 		int exitVal = process.waitFor();
 		if (exitVal == 0) {
 			System.out.println("Success!");
@@ -83,8 +80,8 @@ public class SecondaryController implements Initializable {
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
         try {
-            ModelResponse modelResponse=  ModelResponse.getInstance();
             frameworkNamePreLabel.setText("Recommanded Framework:\t");
+            String preLabelCssClass = "preLabel";
             frameworkNamePreLabel.getStyleClass().add(preLabelCssClass);
             frameworkNameLabel.setText(modelResponse.getFramework());
 
