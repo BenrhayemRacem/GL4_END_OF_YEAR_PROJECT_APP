@@ -52,7 +52,8 @@ public class DeploySolution {
         list.add("echo Stopping container");
         list.add("docker stop deploy-solution") ;
 
-
+        // TODO FAROUK : update commands to new docker images of graphchi & xstream
+        // TODO FAROUK : handle conversion !!!!!!!!!!!!!
         switch (framework){
             case "LIGRA" :
                 list.set(1,"docker run --rm -dt  --name deploy-solution -v "+fm.getVolumePath() +":/data faroukdrira/ligra:1.1");
@@ -63,6 +64,7 @@ public class DeploySolution {
                 list.set(3,"docker exec deploy-solution bash -c 'cd /home/pfa &&  GraphChi/graphChi-binaries/" + Lookup.lookup[Lookup.GRAPH_CHI][fm.getAlgorithmCode(fm.getAlgorithm())]+ " --nshards=2 filetype edgelist file  data/"+fm.getFileName()+"'");
                 break ;
             case "MMAP" :
+                // TODO RACEM : c'est claire
                 break ;
             case "X_STREAM" :
                 list.set(1,"docker run " + "--rm -dt  --name deploy-solution -v "+fm.getVolumePath() +":/home/pfa/data faroukdrira/x-stream:1.0") ;

@@ -53,6 +53,7 @@ public class SecondaryController implements Initializable {
         try {
             Process process = deploySolution.getProcessBuilder().start();
             BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+            String res = "";
             String line;
             while ((line = reader.readLine()) != null) {
                 if(line.startsWith("Bad input")){
@@ -67,10 +68,33 @@ public class SecondaryController implements Initializable {
                     commandText.setText(line);
                     break;
                 }
-
-                commandText.setText(commandText.getText()+"\n "+line);
+                if(line.startsWith("Number of triangles")){
+                    commandText.setText(line);
+                    break;
+                }
+                if(line.contains("Input file is not in right format")){
+                    commandText.setText("Input file is not in right format, you should provide me with an Edge List");
+                    break;
+                }
+                if(line.contains("number of different labels")){
+                    commandText.setText(line);
+                    break ;
+                }
+                if(line.startsWith("1.")){
+                    StringBuilder res1 = new StringBuilder("Print top 10 vertecies :\n"+line+"\n");
+                    for (int i = 0; i < 10; i++) {
+                        if (((line = reader.readLine()) != null)){
+                            res1.append(line).append("\n");
+                        }
+                    }
+                    commandText.setText(res1.toString());
+                    break;
+                }
+                res = res + "\n" + line ;
             }
+            System.out.println(res);
             System.out.println(commandText.getText());
+
             // TODO : this returns the success for the last executed command
             int exitVal = process.waitFor();
             if (exitVal == 0) {

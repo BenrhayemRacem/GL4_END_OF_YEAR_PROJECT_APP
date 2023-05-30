@@ -78,9 +78,9 @@ public class PrimaryController implements Initializable {
             ModelResponse modelResponse = ModelResponse.getInstance();
             FormModel newFormModel = new FormModel(formModel.getFileName(), formModel.getVolumePath(),
                     formModel.getNodes(), formModel.getEdges(), formModel.getAlgorithm(), formModel.getIterations() ,formModel.getFileSize());
-            // TODO : send HTTP request to our server
+            // TODO BO3 : send HTTP request to our server
             // TODO : unify this in Lookup
-            modelResponse.setFramework("LIGRA");
+            modelResponse.setFramework("GRAPH_CHI");
             modelResponse.setFormModel(newFormModel);
             App.setRoot("secondary");
         } catch (Exception e) {
