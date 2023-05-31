@@ -1,11 +1,26 @@
-.preLabel {
-    -fx-text-fill : rgb(8, 8, 121) ;
-    -fx-font-weight: bold;
-}
+.preLab {
 
-.container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh; /* Set the height to occupy the full viewport height */
+    -fx-background-color: #fdfeff;
+    -fx-border-color: none;
+    
+    -fx-font-size: 15px;
+    -fx-text-fill: #00040e;
+        -fx-alignment: BASELINE_LEFT;
+    
 }
+.textLabel{
+    -fx-background-color: #fdfeff;
+    -fx-border-color: none;
+    /* -fx-margin:400px; */
+    -fx-font-size: 15px;
+    -fx-text-fill: #00083a;
+    -fx-alignment: BASELINE_LEFT;
+}
+.container{
+    -fx-background-color: #fdfeff;
+    -fx-padding:30px;
+    -fx-alignment: CENTER;
+}
+/* .verticalBox{
+    -fx-alignment: CENTER;
+} */

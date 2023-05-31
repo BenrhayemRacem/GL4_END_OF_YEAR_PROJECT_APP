@@ -113,6 +113,8 @@ public class SecondaryController implements Initializable {
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
         try {
+
+            deploySolutionButton.getStyleClass().addAll("btn","btn-success");
             frameworkNamePreLabel.setText("Recommanded Framework:\t");
             String preLabelCssClass = "preLabel";
             frameworkNamePreLabel.getStyleClass().add(preLabelCssClass);
@@ -122,7 +124,7 @@ public class SecondaryController implements Initializable {
             expected_timePreLabel.getStyleClass().add(preLabelCssClass);
             expected_timeLabel.setText(modelResponse.getexpected_time());
 
-            graphNamePreLabel.setText("Graph Name:\t");
+            graphNamePreLabel.setText("Graph Path:\t");
             graphNamePreLabel.getStyleClass().add(preLabelCssClass);
             graphNameLabel.setText(modelResponse.getFormModel().getFileName());
 

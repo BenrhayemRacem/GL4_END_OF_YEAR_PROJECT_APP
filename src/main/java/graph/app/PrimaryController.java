@@ -89,6 +89,7 @@ public class PrimaryController implements Initializable {
             formModel.setEdges(Long.parseLong(edgesTextField.getText()));
             //formModel.setAlgorithm(algorithComboBox.getValue());
             formModel.setCpuNb(Runtime.getRuntime().availableProcessors()/2);
+            formModel.setFileName(fileSelectionLabel.getText());
             // long totalRAMSizeBytes = ((OperatingSystemMXBean)
             // ManagementFactory.getOperatingSystemMXBean())
             // .getTotalPhysicalMemorySize();

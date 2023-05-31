@@ -13,7 +13,7 @@ public class ModelResponse {
     }
 
     public String getFramework() {
-        return framework;
+        return framework.replace("\"", "");
     }
 
     public void setFramework(String framework) {
