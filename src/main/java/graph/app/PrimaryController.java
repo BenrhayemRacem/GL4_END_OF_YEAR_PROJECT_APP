@@ -34,6 +34,9 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
+import org.kordamp.bootstrapfx.BootstrapFX;
+
+
 public class PrimaryController implements Initializable {
     private FileChooser fileChooser = new FileChooser();
     private FormModel formModel = new FormModel();
@@ -106,6 +109,7 @@ public class PrimaryController implements Initializable {
 
             // TODO : send HTTP request to our server
             String response = sendPostRequest(newFormModel);
+
             // TODO : unify this in Lookup
             // convert response to json
             // JsonElement jsonElement = JsonParser.parseString(response);
@@ -182,8 +186,13 @@ public class PrimaryController implements Initializable {
         algorithComboBox.getItems().setAll(AlgorithmEnum.values());
         iterationLabel.setVisible(false);
         iterationTextField.setVisible(false);
-        algorithComboBox.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<AlgorithmEnum>() {
 
+        submitButton.getStyleClass().addAll("btn","btn-success");
+        chooseFileButton.getStyleClass().addAll("btn","btn-default");
+        nodesTextField.getStyleClass().add("form-control");
+
+
+        algorithComboBox.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<AlgorithmEnum>() {
             @Override
             public void changed(ObservableValue<? extends AlgorithmEnum> arg0, AlgorithmEnum oldAlgorithm,
                     AlgorithmEnum newAlgorithm) {

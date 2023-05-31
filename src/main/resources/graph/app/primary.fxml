@@ -8,43 +8,44 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ComboBox?>
 
-<VBox alignment="CENTER" spacing="20.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="graph.app.PrimaryController">
-   <children>
-      <Label fx:id="fileSelectionLabel" text="no Graph File selected" />
-      <Button fx:id="chooseFileButton" text="choose Graph File" onAction="#handleFileChooseAction"/>
-      <HBox>
-      <children>
-      <Label>
-    <text>Graph nodes (vertices )</text>
-      </Label>
-      <TextField id="nodesTextField" fx:id="nodesTextField"  />
-      </children>
-      </HBox>
+<VBox alignment="CENTER" spacing="20.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="graph.app.PrimaryController" stylesheets="@primary.css" styleClass="container">
+    <children>
+        <Label fx:id="fileSelectionLabel" text="no Graph File selected" styleClass="lead" />
+        <Button fx:id="chooseFileButton" text="Choose Graph File" onAction="#handleFileChooseAction" styleClass="btn btn-primary" />
+        <HBox>
+            <children>
+                <Label>
+                    <text>Graph nodes </text>
+                </Label>
+                <TextField id="nodesTextField" fx:id="nodesTextField" styleClass="form-control" />
+            </children>
+        </HBox>
 
-       <HBox>
-      <children>
-      <Label>
-    <text>Graph edges </text>
-      </Label>
-      <TextField id="edgesTextField" fx:id="edgesTextField"  />
-      </children>
-      </HBox>
-      <HBox>
-      <children>
-       <Label>
-    <text>Choose algorithm </text>
-      </Label>
-      <ComboBox fx:id="algorithComboBox" />
-      </children>
-      </HBox>
-       <HBox>
-      <children>
-       <Label fx:id="iterationLabel" text="number of iterations"/>
-      <TextField id="iterationTextField" fx:id="iterationTextField"  />
-      </children>
-      </HBox>
-      <Button fx:id="submitButton" text="submit" onAction="#handleSubmit"/>
-   </children>
-  
-   
+        <HBox>
+            <children>
+                <Label>
+                    <text>Graph edges</text>
+                </Label>
+                <TextField id="edgesTextField" fx:id="edgesTextField" styleClass="form-control" />
+            </children>
+        </HBox>
+
+        <HBox>
+            <children>
+                <Label>
+                    <text>Choose algorithm</text>
+                </Label>
+                <ComboBox fx:id="algorithComboBox" styleClass="form-control" />
+            </children>
+        </HBox>
+
+        <HBox>
+            <children>
+                <Label fx:id="iterationLabel" text="Number of iterations" />
+                <TextField id="iterationTextField" fx:id="iterationTextField" styleClass="form-control" />
+            </children>
+        </HBox>
+
+        <Button fx:id="submitButton" text="Submit" onAction="#handleSubmit" styleClass="btn btn-primary" />
+    </children>
 </VBox>
