@@ -66,11 +66,9 @@ public class SecondaryController implements Initializable {
                 }
                 if(line.startsWith("triangle count")){
                     commandText.setText(line);
-                    break;
                 }
-                if(line.startsWith("Number of triangles")){
+                if(line.contains("Number of triangles")){
                     commandText.setText(line);
-                    break;
                 }
                 if(line.contains("Input file is not in right format")){
                     commandText.setText("Input file is not in right format, you should provide me with an Edge List");
@@ -78,7 +76,6 @@ public class SecondaryController implements Initializable {
                 }
                 if(line.contains("number of different labels")){
                     commandText.setText(line);
-                    break ;
                 }
                 if(line.startsWith("1.")){
                     StringBuilder res1 = new StringBuilder("Print top 10 vertecies :\n"+line+"\n");
@@ -88,7 +85,6 @@ public class SecondaryController implements Initializable {
                         }
                     }
                     commandText.setText(res1.toString());
-                    break;
                 }
                 res = res + "\n" + line ;
             }

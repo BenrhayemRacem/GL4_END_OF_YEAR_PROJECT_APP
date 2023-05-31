@@ -23,6 +23,9 @@ import javafx.stage.Stage;
 import models.FormModel;
 import models.ModelResponse;
 
+import org.kordamp.bootstrapfx.BootstrapFX;
+
+
 public class PrimaryController implements Initializable {
     private FileChooser fileChooser = new FileChooser();
     private FormModel formModel = new FormModel();
@@ -80,7 +83,7 @@ public class PrimaryController implements Initializable {
                     formModel.getNodes(), formModel.getEdges(), formModel.getAlgorithm(), formModel.getIterations() ,formModel.getFileSize());
             // TODO BO3 : send HTTP request to our server
             // TODO : unify this in Lookup
-            modelResponse.setFramework("GRAPH_CHI");
+            modelResponse.setFramework("LIGRA");
             modelResponse.setFormModel(newFormModel);
             App.setRoot("secondary");
         } catch (Exception e) {
@@ -94,8 +97,13 @@ public class PrimaryController implements Initializable {
         algorithComboBox.getItems().setAll(AlgorithmEnum.values());
         iterationLabel.setVisible(false);
         iterationTextField.setVisible(false);
-        algorithComboBox.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<AlgorithmEnum>() {
 
+        submitButton.getStyleClass().addAll("btn","btn-success");
+        chooseFileButton.getStyleClass().addAll("btn","btn-default");
+        nodesTextField.getStyleClass().add("form-control");
+
+
+        algorithComboBox.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<AlgorithmEnum>() {
             @Override
             public void changed(ObservableValue<? extends AlgorithmEnum> arg0, AlgorithmEnum oldAlgorithm,
                     AlgorithmEnum newAlgorithm) {
