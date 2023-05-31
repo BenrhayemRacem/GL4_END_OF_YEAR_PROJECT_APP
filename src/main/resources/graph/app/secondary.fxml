@@ -10,45 +10,84 @@
 
 <VBox stylesheets="@secondary.css" alignment="CENTER" spacing="20.0"
     xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1"
-    fx:controller="graph.app.SecondaryController">
+    fx:controller="graph.app.SecondaryController" styleClass="container">
     <children>
-        <HBox>
-            <children>
-                <Label fx:id="frameworkNamePreLabel" />
-                <Label fx:id="frameworkNameLabel" />
-            </children>
+        <HBox alignment="CENTER" spacing="40.0">
+            <VBox alignment="BASELINE_LEFT" spacing="20.0" styleClass="verticalBox">
+                <children>
+                    <Label fx:id="frameworkNamePreLabel" styleClass="preLab" />
+                    <Label fx:id="expected_timePreLabel" styleClass="preLab" />
+                    <Label fx:id="graphNamePreLabel" styleClass="preLab" />
+                    <Label fx:id="nodesPreLabel" styleClass="preLab" />
+                    <Label fx:id="edgesPreLabel" styleClass="preLab" />
+                    <Label fx:id="algorithmPreLabel" styleClass="preLab" />
+                    <Label fx:id="iterationPreLabel" styleClass="preLab" />
+                </children>
+            </VBox>
+            <VBox alignment="BASELINE_LEFT" spacing="20.0" styleClass="verticalBox">
+                <children>
+
+                    <Label fx:id="frameworkNameLabel" styleClass="textLabel" />
+                    <Label fx:id="expected_timeLabel" styleClass="textLabel" />
+                    <Label fx:id="graphNameLabel" styleClass="textLabel" />
+                    <Label fx:id="nodesLabel" styleClass="textLabel" />
+                    <Label fx:id="edgesLabel" styleClass="textLabel" />
+                    <Label fx:id="algorithmLabel" styleClass="textLabel" />
+                    <Label fx:id="iterationLabel" styleClass="textLabel" />
+                </children>
+            </VBox>
         </HBox>
-        <HBox>
-            <children>
-                <Label fx:id="graphNamePreLabel" />
-                <Label fx:id="graphNameLabel" />
-            </children>
-        </HBox>
-        <HBox>
-            <children>
-                <Label fx:id="nodesPreLabel" />
-                <Label fx:id="nodesLabel" />
-            </children>
-        </HBox>
-        <HBox>
-            <children>
-                <Label fx:id="edgesPreLabel"  />
-                <Label fx:id="edgesLabel" />
-            </children>
-        </HBox>
-        <HBox>
-            <children>
-                <Label  fx:id="algorithmPreLabel"/>
-                <Label fx:id="algorithmLabel" />
-            </children>
-        </HBox>
-        <HBox>
-            <children>
-                <Label  fx:id="iterationPreLabel"/>
-                <Label fx:id="iterationLabel" />
-            </children>
-        </HBox>
-        <Button fx:id="deploySolutionButton" text="Deploy Solution" onAction="#handleDeploySolution" />
+        <!-- <VBox alignment="CENTER" spacing="20.0" styleClass="verticalBox">
+            <HBox>
+                <children>
+                    <Label fx:id="frameworkNamePreLabel" styleClass="preLabel" />
+                    <Label fx:id="frameworkNameLabel" styleClass="label" />
+                </children>
+            </HBox>
+            <HBox>
+                <children>
+                    <HBox styleClass="preLabel">
+                        <Label fx:id="expected_timePreLabel" />
+
+                    </HBox>
+                    <HBox styleClass="label">
+                        <Label fx:id="expected_timeLabel" />
+
+                    </HBox>
+                </children>
+            </HBox>
+            <HBox>
+                <children>
+                    <Label fx:id="graphNamePreLabel" styleClass="preLabel" />
+                    <Label fx:id="graphNameLabel" styleClass="label" />
+                </children>
+            </HBox>
+            <HBox>
+                <children>
+                    <Label fx:id="nodesPreLabel" styleClass="preLabel" />
+                    <Label fx:id="nodesLabel" styleClass="label" />
+                </children>
+            </HBox>
+            <HBox>
+                <children>
+                    <Label fx:id="edgesPreLabel" styleClass="preLabel" />
+                    <Label fx:id="edgesLabel" styleClass="label" />
+                </children>
+            </HBox>
+            <HBox>
+                <children>
+                    <Label fx:id="algorithmPreLabel" styleClass="preLabel" />
+                    <Label fx:id="algorithmLabel" styleClass="label" />
+                </children>
+            </HBox>
+            <HBox>
+                <children>
+                    <Label fx:id="iterationPreLabel" styleClass="preLabel" />
+                    <Label fx:id="iterationLabel" styleClass="label" />
+                </children>
+            </HBox>
+        </VBox> -->
+        <Button fx:id="deploySolutionButton" text="Deploy Solution" onAction="#handleDeploySolution" styleClass="btn btn-primary"/>
         <Text fx:id="commandText" />
         <!-- <TextArea fx:id="commandTextArea" /> -->
     </children>

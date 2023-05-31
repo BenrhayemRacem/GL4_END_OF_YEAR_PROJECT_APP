@@ -1,7 +1,8 @@
 package models;
 
 import enums.AlgorithmEnum;
-
+import java.lang.management.ManagementFactory;
+import com.sun.management.OperatingSystemMXBean;
 public class FormModel {
 
     private String fileName = "";
@@ -15,18 +16,21 @@ public class FormModel {
         this.volumePath = volumePath;
     }
 
-    private long nodes = 0;
-    private long edges = 0;
-    private AlgorithmEnum algorithm = AlgorithmEnum.CONNECTED_COMPONENTS;
+    private long graph_nodes = 0;
+    private long graph_edges = 0;
+    private AlgorithmEnum algo = AlgorithmEnum.CONNECTED_COMPONENTS;
     private int iterations = 1;
-    private long fileSize = 0; // in megabytes
+    private long graph_size = 0; // in megabytes
+    private long ram = ((OperatingSystemMXBean) ManagementFactory.getOperatingSystemMXBean()).getTotalPhysicalMemorySize()/(1000*1000*1000); 
+    private int cpu = 0; 
+
 
     public long getFileSize() {
-        return fileSize;
+        return graph_size;
     }
 
     public void setFileSize(long fileSize) {
-        this.fileSize = fileSize;
+        this.graph_size = fileSize;
     }
 
     public FormModel() {
@@ -34,14 +38,16 @@ public class FormModel {
     }
 
     public FormModel(String fileName, String volumePath, long nodes, long edges, AlgorithmEnum algorithm,
-            int iterations, long fileSize) {
+            int iterations, long fileSize , long ramSize , int cpuNb) {
         this.fileName = fileName;
         this.volumePath = volumePath;
-        this.nodes = nodes;
-        this.edges = edges;
-        this.algorithm = algorithm;
+        this.graph_nodes = nodes;
+        this.graph_edges = edges;
+        this.algo = algorithm;
         this.iterations = iterations;
-        this.fileSize = fileSize;
+        this.graph_size = fileSize;
+        this.ram=ramSize;
+        this.cpu=cpuNb;
     }
 
     public String getFileName() {
@@ -53,27 +59,61 @@ public class FormModel {
     }
 
     public long getNodes() {
-        return nodes;
+        return graph_nodes;
     }
 
     public void setNodes(long nodes) {
-        this.nodes = nodes;
+        this.graph_nodes = nodes;
     }
 
     public long getEdges() {
-        return edges;
+        return graph_edges;
     }
 
     public void setEdges(long edges) {
-        this.edges = edges;
+        this.graph_edges = edges;
+    }
+    public long getRamSize() {
+        return ram;
+    }
+
+    public void setRamSize(long ramSize) {
+        this.ram = ramSize;
+    }
+    public int getCpuNb() {
+        return cpu;
+    }
+
+    public void setCpuNb(int cpuNb) {
+        this.cpu = cpuNb;
     }
 
     public AlgorithmEnum getAlgorithm() {
-        return algorithm;
+        return algo;
+    }
+
+    // TODO : probably move it to Lookup class
+    public int getAlgorithmCode(AlgorithmEnum algorithm) {
+        switch (algorithm) {
+            case BFS:
+                return 0 ;
+            case PAGE_RANK:
+                return 1 ;
+            case CONNECTED_COMPONENTS:
+                return 2 ;
+            case TRIANGLE_COUNTING:
+                return 3 ;
+
+            default:
+                System.err.println("Invalid Input");
+                System.exit(1);
+                break ;
+        }
+        return -1 ;
     }
 
     public void setAlgorithm(AlgorithmEnum algorithm) {
-        this.algorithm = algorithm;
+        this.algo = algorithm;
     }
 
     public int getIterations() {
@@ -86,8 +126,8 @@ public class FormModel {
 
     @Override
     public String toString() {
-        return "FormModel [fileName=" + fileName + ", volumePath=" + volumePath + ", nodes=" + nodes + ", edges="
-                + edges + ", algorithm=" + algorithm + ", iterations=" + iterations + ", fileSize=" + fileSize + "]";
+        return "FormModel [fileName=" + fileName + ", volumePath=" + volumePath + ", graph_nodes=" + graph_nodes + ", graph_edges="
+                + graph_edges + ", algo=" + algo + ", iterations=" + iterations + ", graph_size=" + graph_size + ", ram=" +ram +", cpu=" +cpu+ "]";
     }
 
    
