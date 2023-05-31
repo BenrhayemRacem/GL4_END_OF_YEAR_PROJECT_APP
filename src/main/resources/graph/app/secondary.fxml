@@ -20,6 +20,12 @@
         </HBox>
         <HBox>
             <children>
+                <Label fx:id="expected_timePreLabel" />
+                <Label fx:id="expected_timeLabel" />
+            </children>
+        </HBox>
+        <HBox>
+            <children>
                 <Label fx:id="graphNamePreLabel" />
                 <Label fx:id="graphNameLabel" />
             </children>

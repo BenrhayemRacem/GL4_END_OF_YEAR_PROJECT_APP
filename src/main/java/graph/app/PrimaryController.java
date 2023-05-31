@@ -83,7 +83,7 @@ public class PrimaryController implements Initializable {
             // TODO : computer config
             formModel.setNodes(Long.parseLong(nodesTextField.getText()));
             formModel.setEdges(Long.parseLong(edgesTextField.getText()));
-            formModel.setAlgorithm(algorithComboBox.getValue());
+            //formModel.setAlgorithm(algorithComboBox.getValue());
             formModel.setCpuNb(Runtime.getRuntime().availableProcessors());
             // long totalRAMSizeBytes = ((OperatingSystemMXBean)
             // ManagementFactory.getOperatingSystemMXBean())
@@ -95,6 +95,8 @@ public class PrimaryController implements Initializable {
             } else {
                 formModel.setIterations(-1);
             }
+            formModel.setAlgorithm(algorithComboBox.getValue());
+
             System.out.println(formModel);
             // ModelResponse modelResponse = ModelResponse.getInstance();
             // FormModel newFormModel = new FormModel(formModel.getFileName(),
@@ -169,9 +171,15 @@ public class PrimaryController implements Initializable {
             System.out.println("Response Code: " + responseCode);
             System.out.println("Response Body: " + response.toString());
             ModelResponse modelResponse = ModelResponse.getInstance();
-            modelResponse.setFramework(response.toString());
-            modelResponse.setFormModel(formModel);
             
+            
+            
+            JsonObject jsonObject =gson.fromJson(response.toString(),JsonObject.class);
+            System.out.println("*******************"+jsonObject.get("name").toString());
+
+            modelResponse.setFramework(jsonObject.get("name").toString());
+            modelResponse.setexpected_time(jsonObject.get("expected_time").toString());
+            modelResponse.setFormModel(formModel);
             App.setRoot("secondary");
             return response.toString();
         } catch (Exception e) {

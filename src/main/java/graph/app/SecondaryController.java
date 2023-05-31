@@ -36,6 +36,10 @@ public class SecondaryController implements Initializable {
     @FXML
     private Label frameworkNamePreLabel ;
     @FXML
+    private Label expected_timePreLabel ;
+    @FXML
+    private Label expected_timeLabel ;
+    @FXML
     private Label nodesPreLabel;
     @FXML 
     private Label edgesPreLabel;
@@ -113,6 +117,10 @@ public class SecondaryController implements Initializable {
             String preLabelCssClass = "preLabel";
             frameworkNamePreLabel.getStyleClass().add(preLabelCssClass);
             frameworkNameLabel.setText(modelResponse.getFramework());
+
+            expected_timePreLabel.setText("expected time:\t");
+            expected_timePreLabel.getStyleClass().add(preLabelCssClass);
+            expected_timeLabel.setText(modelResponse.getexpected_time());
 
             graphNamePreLabel.setText("Graph Name:\t");
             graphNamePreLabel.getStyleClass().add(preLabelCssClass);

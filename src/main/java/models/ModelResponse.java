@@ -2,6 +2,7 @@ package models;
 
 public class ModelResponse {
     private String framework = "";
+    private String expected_time="0";
     private String command = "";
     private FormModel formModel = null;
 
@@ -17,6 +18,14 @@ public class ModelResponse {
 
     public void setFramework(String framework) {
         this.framework = framework;
+    }
+
+    public String getexpected_time() {
+        return expected_time;
+    }
+
+    public void setexpected_time(String expected_time) {
+        this.expected_time = expected_time;
     }
 
     public String getCommand() {

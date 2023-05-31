@@ -103,8 +103,7 @@ public class FormModel {
                 return 2 ;
             case TRIANGLE_COUNTING:
                 return 3 ;
-            case PR10:
-                return 4;
+
             default:
                 System.err.println("Invalid Input");
                 System.exit(1);

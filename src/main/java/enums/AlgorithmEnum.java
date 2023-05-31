@@ -5,5 +5,4 @@ public enum AlgorithmEnum {
     PAGE_RANK,
     CONNECTED_COMPONENTS,
     TRIANGLE_COUNTING,
-    PR10
 }
