@@ -26,6 +26,8 @@ import javafx.stage.Stage;
 import models.FormModel;
 import models.ModelResponse;
 import java.lang.management.ManagementFactory;
+
+import com.sun.glass.ui.Size;
 import com.sun.management.OperatingSystemMXBean;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
@@ -65,7 +67,7 @@ public class PrimaryController implements Initializable {
                 formModel.setFileSize(bytes / 1000000);
 
                 fileSelectionLabel.setText(file.getAbsolutePath());
-                
+
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -80,8 +82,9 @@ public class PrimaryController implements Initializable {
             formModel.setEdges(Long.parseLong(edgesTextField.getText()));
             formModel.setAlgorithm(algorithComboBox.getValue());
             formModel.setCpuNb(Runtime.getRuntime().availableProcessors());
-            // long totalRAMSizeBytes = ((OperatingSystemMXBean) ManagementFactory.getOperatingSystemMXBean())
-            //         .getTotalPhysicalMemorySize();
+            // long totalRAMSizeBytes = ((OperatingSystemMXBean)
+            // ManagementFactory.getOperatingSystemMXBean())
+            // .getTotalPhysicalMemorySize();
 
             // formModel.setRamSize(totalRAMSizeBytes / (1000 * 1000 * 1000));
             if (iterationTextField.isVisible()) {
@@ -90,48 +93,61 @@ public class PrimaryController implements Initializable {
                 formModel.setIterations(-1);
             }
             System.out.println(formModel);
-            ModelResponse modelResponse = ModelResponse.getInstance();
+            // ModelResponse modelResponse = ModelResponse.getInstance();
+            // FormModel newFormModel = new FormModel(formModel.getFileName(),
+            // formModel.getVolumePath(),
+            // formModel.getNodes(), formModel.getEdges(), formModel.getAlgorithm(),
+            // formModel.getIterations(),
+            // formModel.getFileSize(), formModel.getRamSize(), formModel.getCpuNb());
+
             FormModel newFormModel = new FormModel(formModel.getFileName(), formModel.getVolumePath(),
                     formModel.getNodes(), formModel.getEdges(), formModel.getAlgorithm(), formModel.getIterations(),
-                    formModel.getFileSize(), formModel.getRamSize(), formModel.getCpuNb());
+                    4, 16, 6);
+
             // TODO : send HTTP request to our server
-            String response=sendPostRequest(newFormModel);
+            String response = sendPostRequest(newFormModel);
             // TODO : unify this in Lookup
-            //convert response to json
-                JsonElement jsonElement = JsonParser.parseString(response);
-                JsonObject jsonObject = jsonElement.getAsJsonObject();
+            // convert response to json
+            // JsonElement jsonElement = JsonParser.parseString(response);
+            // JsonObject jsonObject = jsonElement.getAsJsonObject();
+
+            // String framework = jsonObject.get("framework").getAsString();
+            // String framework = response;
+
+            // System.out.println("framework*********************************");
+            // System.out.println(framework);
             
-                String framework = jsonObject.get("framework").getAsString();
-            System.out.println(framework);
-            modelResponse.setFramework(framework);
-            modelResponse.setFormModel(newFormModel);
-            App.setRoot("secondary");
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
+
     private String sendPostRequest(FormModel formModel) {
         try {
             // Create the URL of your Express.js server
-            URL url = new URL("http://localhost:3000/api/submit");
+            // URL url = new URL("http://localhost:3000/api/submit");
             Gson gson = new Gson();
+            System.out.println("************************************************************");
+            System.out.println(gson.toJson(formModel));
+            URL url = new URL("http://localhost:5000/predict");
+
             // Open a connection
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             connection.setRequestMethod("POST");
             connection.setDoOutput(true);
-    
+
             // Set the request headers if needed
             connection.setRequestProperty("Content-Type", "application/json");
-    
+
             // Create your request body
             // String requestBody = "{\"name\": \"John Doe\", \"age\": 30}";
             String requestBody = gson.toJson(formModel);
-    
+
             // Write the request body
             try (OutputStream outputStream = connection.getOutputStream()) {
                 outputStream.write(requestBody.getBytes());
             }
-    
+
             // Get the response
             int responseCode = connection.getResponseCode();
             StringBuilder response = new StringBuilder();
@@ -141,21 +157,25 @@ public class PrimaryController implements Initializable {
                     response.append(line);
                 }
             }
-    
+
             // Close the connection
             connection.disconnect();
-    
+
             // Do something with the response
             System.out.println("Response Code: " + responseCode);
             System.out.println("Response Body: " + response.toString());
+            ModelResponse modelResponse = ModelResponse.getInstance();
+            modelResponse.setFramework(response.toString());
+            modelResponse.setFormModel(formModel);
+            
+            App.setRoot("secondary");
             return response.toString();
         } catch (Exception e) {
             e.printStackTrace();
-            return(e.toString());
+            return (e.toString());
         }
     }
 
-    
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
 
