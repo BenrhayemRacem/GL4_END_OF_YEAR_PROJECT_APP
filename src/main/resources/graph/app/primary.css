@@ -1,0 +1,22 @@
+.label {
+    -fx-background-color: #fdfeff;
+    -fx-border-color: none;
+    -fx-margin:100px;
+    -fx-font-size: 16px;
+    -fx-text-fill: #160139;
+}
+
+.horizontalBox{
+    -fx-alignment: CENTER;
+    -fx-display:flex;
+    -fx-flex-direction:horizontal;
+}
+.form-control{
+    -fx-pref-width: 250px;
+    -fx-background-color: rgb(236, 235, 235);
+    -fx-box-shadow: rgba(0,0,0,0.8) 0 0 10px;
+    -fx-border-radius: 5px;
+}
+.container{
+    -fx-background-color: #fdfeff;
+}

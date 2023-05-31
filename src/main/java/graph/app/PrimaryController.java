@@ -48,6 +48,10 @@ public class PrimaryController implements Initializable {
     @FXML
     private TextField nodesTextField;
     @FXML
+    private TextField ramTextField;
+    @FXML
+    private TextField cpuTextField;
+    @FXML
     private TextField edgesTextField;
     @FXML
     private ComboBox<AlgorithmEnum> algorithComboBox;
@@ -84,18 +88,19 @@ public class PrimaryController implements Initializable {
             formModel.setNodes(Long.parseLong(nodesTextField.getText()));
             formModel.setEdges(Long.parseLong(edgesTextField.getText()));
             //formModel.setAlgorithm(algorithComboBox.getValue());
-            formModel.setCpuNb(Runtime.getRuntime().availableProcessors());
+            formModel.setCpuNb(Runtime.getRuntime().availableProcessors()/2);
             // long totalRAMSizeBytes = ((OperatingSystemMXBean)
             // ManagementFactory.getOperatingSystemMXBean())
             // .getTotalPhysicalMemorySize();
 
             // formModel.setRamSize(totalRAMSizeBytes / (1000 * 1000 * 1000));
+            formModel.setAlgorithm(algorithComboBox.getValue());
             if (iterationTextField.isVisible()) {
                 formModel.setIterations(Integer.parseInt(iterationTextField.getText()));
             } else {
                 formModel.setIterations(-1);
             }
-            formModel.setAlgorithm(algorithComboBox.getValue());
+            
 
             System.out.println(formModel);
             // ModelResponse modelResponse = ModelResponse.getInstance();
@@ -199,7 +204,12 @@ public class PrimaryController implements Initializable {
         chooseFileButton.getStyleClass().addAll("btn","btn-default");
         nodesTextField.getStyleClass().add("form-control");
 
+        long ramValue = ((OperatingSystemMXBean) ManagementFactory.getOperatingSystemMXBean()).getTotalPhysicalMemorySize()/(1000*1000*1000);
+        ramTextField.setText(Long.toString(ramValue));
+        ramTextField.setEditable(false);
 
+        cpuTextField.setText(String.valueOf(Runtime.getRuntime().availableProcessors()/2));
+        cpuTextField.setEditable(false);
         algorithComboBox.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<AlgorithmEnum>() {
             @Override
             public void changed(ObservableValue<? extends AlgorithmEnum> arg0, AlgorithmEnum oldAlgorithm,
