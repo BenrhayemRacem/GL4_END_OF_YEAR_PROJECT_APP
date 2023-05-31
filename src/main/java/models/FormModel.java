@@ -1,7 +1,8 @@
 package models;
 
 import enums.AlgorithmEnum;
-
+import java.lang.management.ManagementFactory;
+import com.sun.management.OperatingSystemMXBean;
 public class FormModel {
 
     private String fileName = "";
@@ -20,6 +21,9 @@ public class FormModel {
     private AlgorithmEnum algorithm = AlgorithmEnum.CONNECTED_COMPONENTS;
     private int iterations = 1;
     private long fileSize = 0; // in megabytes
+    private long ramSize = ((OperatingSystemMXBean) ManagementFactory.getOperatingSystemMXBean()).getTotalPhysicalMemorySize()/(1000*1000*1000); 
+    private int cpuNb = 0; 
+
 
     public long getFileSize() {
         return fileSize;
@@ -34,7 +38,7 @@ public class FormModel {
     }
 
     public FormModel(String fileName, String volumePath, long nodes, long edges, AlgorithmEnum algorithm,
-            int iterations, long fileSize) {
+            int iterations, long fileSize , long ramSize , int cpuNb) {
         this.fileName = fileName;
         this.volumePath = volumePath;
         this.nodes = nodes;
@@ -42,6 +46,8 @@ public class FormModel {
         this.algorithm = algorithm;
         this.iterations = iterations;
         this.fileSize = fileSize;
+        this.ramSize=ramSize;
+        this.cpuNb=cpuNb;
     }
 
     public String getFileName() {
@@ -66,6 +72,20 @@ public class FormModel {
 
     public void setEdges(long edges) {
         this.edges = edges;
+    }
+    public long getRamSize() {
+        return ramSize;
+    }
+
+    public void setRamSize(long ramSize) {
+        this.ramSize = ramSize;
+    }
+    public int getCpuNb() {
+        return cpuNb;
+    }
+
+    public void setCpuNb(int cpuNb) {
+        this.cpuNb = cpuNb;
     }
 
     public AlgorithmEnum getAlgorithm() {
@@ -106,7 +126,7 @@ public class FormModel {
     @Override
     public String toString() {
         return "FormModel [fileName=" + fileName + ", volumePath=" + volumePath + ", nodes=" + nodes + ", edges="
-                + edges + ", algorithm=" + algorithm + ", iterations=" + iterations + ", fileSize=" + fileSize + "]";
+                + edges + ", algorithm=" + algorithm + ", iterations=" + iterations + ", fileSize=" + fileSize + ", ramSize=" +ramSize +", cpuNb=" +cpuNb+ "]";
     }
 
    

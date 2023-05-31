@@ -121,6 +121,14 @@ public class SecondaryController implements Initializable {
             e.printStackTrace();
         }
      }
+    //  public void setParameters(String params) {
+    //     // Process the parameters here
+
+    //      JsonElement jsonElement = JsonParser.parseString(params);
+    //      JsonObject jsonObject = jsonElement.getAsJsonObject();
+    //      String framework = jsonObject.get("framework").getAsString();
+    //      System.out.println(framework);
+    // }
     
 }
 
