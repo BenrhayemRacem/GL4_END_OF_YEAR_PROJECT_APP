@@ -2,11 +2,11 @@
 
     -fx-background-color: #fdfeff;
     -fx-border-color: none;
-    
+
     -fx-font-size: 15px;
     -fx-text-fill: #00040e;
         -fx-alignment: BASELINE_LEFT;
-    
+
 }
 .textLabel{
     -fx-background-color: #fdfeff;
